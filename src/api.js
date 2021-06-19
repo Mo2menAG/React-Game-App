@@ -27,6 +27,18 @@ const nextYear = `${currentYear + 1}-${currenttMonth}-${currentDay}`;
 
 //popular Games
 
-const populerGames = `games?dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
+const popularGames = `games?key=${process.env.REACT_APP_RAWG_API}&dates=${lastYear},${currentDate}platforms=18,1,7&ordering=-rating&page_size=10`;
 
-export const populerGamesURL = () => `${baseURL}${populerGames}`;
+//upcoming games
+
+const upcomingGames = `games?key=${process.env.REACT_APP_RAWG_API}&dates=${currentDate},${nextYear}platforms=18,1,7,4,187&ordering=-added&page_size=10`;
+
+//new games
+
+const newGames = `games?key=${process.env.REACT_APP_RAWG_API}&dates=${lastYear},${currentDate}platforms=18,1,7&ordering=-released&page_size=10`;
+
+export const popularGamesURL = () => `${baseURL}${popularGames}`;
+
+export const upcomingGamesURL = () => `${baseURL}${upcomingGames}`;
+
+export const newrGamesURL = () => `${baseURL}${newGames}`;
