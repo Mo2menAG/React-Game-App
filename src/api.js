@@ -31,22 +31,29 @@ if (currentDay < 10) {
 const currentDate = `${currentYear}-${currenttMonth}-${currentDay}`;
 const lastYear = `${currentYear - 1}-${currenttMonth}-${currentDay}`;
 const nextYear = `${currentYear + 1}-${currenttMonth}-${currentDay}`;
+const numberOfGames = 6;
 
 //popular Games
 
-const popularGames = `games?key=${process.env.REACT_APP_RAWG_API}&dates=${lastYear},${currentDate}platforms=18,1,7&ordering=-rating&page_size=12`;
+const popularGames = `games?&dates=${lastYear},${currentDate}&key=${process.env.REACT_APP_RAWG_API}&ordering=-rating&page_size=${numberOfGames}`;
 
 //upcoming games
 
-const upcomingGames = `games?dates=${currentDate},${nextYear}&key=${process.env.REACT_APP_RAWG_API}&ordering=-added&page_size=9`;
-console.log(upcomingGames);
+const upcomingGames = `games?dates=${currentDate},${nextYear}&key=${process.env.REACT_APP_RAWG_API}&ordering=-added&page_size=${numberOfGames}`;
 
 //new games
 
-const newGames = `games?key=${process.env.REACT_APP_RAWG_API}&dates=${lastYear},${currentDate}platforms=18,1,7&ordering=-released&page_size=12`;
+const newGames = `games?dates=${lastYear},${currentDate}&key=${process.env.REACT_APP_RAWG_API}&ordering=-released&page_size=${numberOfGames}`;
 
 export const popularGamesURL = () => `${baseURL}${popularGames}`;
 
 export const upcomingGamesURL = () => `${baseURL}${upcomingGames}`;
 
 export const newrGamesURL = () => `${baseURL}${newGames}`;
+
+//games deatils url
+export const gameDetailsUrl = (gameId) =>
+    `${baseURL}games/${gameId}?key=${process.env.REACT_APP_RAWG_API}`;
+
+export const gameScreenshotsUrl = (gameId) =>
+    `${baseURL}games/${gameId}/screenshots?key=${process.env.REACT_APP_RAWG_API}`;
