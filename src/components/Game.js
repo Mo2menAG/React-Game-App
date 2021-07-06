@@ -8,6 +8,9 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { loadDetails } from "../actions/detailsAction";
 
+//utils resize image
+import { smallImageUrl } from "../utils";
+
 const Game = ({ name, released, id, image }) => {
     //fetch games
     const dispatch = useDispatch();
@@ -21,7 +24,7 @@ const Game = ({ name, released, id, image }) => {
             <Link to={`/games/${id}`}>
                 <h3>{name}</h3>
                 <p>{released}</p>
-                <img src={image} alt={name} />
+                <img src={smallImageUrl(image, 640)} alt={name} />
             </Link>
         </StyledGame>
     );
