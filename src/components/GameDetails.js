@@ -21,6 +21,10 @@ import steam from "../img/steam.svg";
 import apple from "../img/apple.svg";
 import nintendo from "../img/nintendo.svg";
 
+//stars
+import starFUll from "../img/star-full.png";
+import starEmpty from "../img/star-empty.png";
+
 const GameDetails = ({ pathId }) => {
     //exit details card
     const dispatch = useDispatch();
@@ -60,6 +64,20 @@ const GameDetails = ({ pathId }) => {
     const { gameDetails, gameScreenshots, isLoading } = useSelector(
         (state) => state.details
     );
+
+    const getStars = () => {
+        const stars = [];
+        const rating = Math.floor(gameDetails.rating);
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                stars.push(<img alt="star" src={starFUll}></img>);
+            } else {
+                stars.push(<img alt="star" src={starEmpty}></img>);
+            }
+        }
+        return stars;
+    };
+
     return (
         <>
             {!isLoading && (
@@ -72,6 +90,7 @@ const GameDetails = ({ pathId }) => {
                             <div className="ratings">
                                 <h3>{gameDetails.name}</h3>
                                 <h4>Rating: {gameDetails.rating}</h4>
+                                {getStars()}
                             </div>
                             <Info>
                                 <h3>Platforms</h3>
@@ -153,6 +172,11 @@ const Stats = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    img {
+        width: 15%;
+        height: 15%;
+        display: inline;
+    }
 `;
 
 const Info = styled(motion.div)`
