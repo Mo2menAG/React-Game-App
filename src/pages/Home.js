@@ -19,15 +19,33 @@ const Home = () => {
     }, [dispatch]);
 
     //get the data back
-    const { popularGames, newGames, upcomingGames } = useSelector(
-        (state) => state.games
-    );
+    const { popularGames, newGames, upcomingGames, searchedGames } =
+        useSelector((state) => state.games);
+
     return (
         <GameList>
+            {searchedGames.length ? (
+                <div className="searched">
+                    <h2>Searched Games</h2>
+                    <Games>
+                        <GameDetails />
+                        {searchedGames.map((game) => (
+                            <Game
+                                name={game.name}
+                                released={game.released}
+                                key={game.id}
+                                id={game.id}
+                                image={game.background_image}
+                            />
+                        ))}
+                    </Games>
+                </div>
+            ) : (
+                ""
+            )}
             <h2>Upcoming Games</h2>
             <Games>
                 <GameDetails />
-
                 {upcomingGames.map((game) => (
                     <Game
                         name={game.name}
@@ -79,6 +97,7 @@ const Games = styled(motion.div)`
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-row-gap: 4rem;
     grid-column-gap: 2.5rem;
+    padding-bottom: 2.5rem;
 `;
 
 export default Home;

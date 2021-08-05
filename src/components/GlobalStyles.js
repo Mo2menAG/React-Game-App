@@ -35,6 +35,10 @@ const GlobalStyles = createGlobalStyle`
     img {
         display: block;
     }
+    input {
+        font-weight: bold;
+        font-family: "Montagna", sans-serif;
+    }
 `;
 
 export default GlobalStyles;

@@ -49,7 +49,7 @@ export const popularGamesURL = () => `${baseURL}${popularGames}`;
 
 export const upcomingGamesURL = () => `${baseURL}${upcomingGames}`;
 
-export const newrGamesURL = () => `${baseURL}${newGames}`;
+export const newGamesURL = () => `${baseURL}${newGames}`;
 
 //games deatils url
 export const gameDetailsUrl = (gameId) =>
@@ -57,3 +57,7 @@ export const gameDetailsUrl = (gameId) =>
 
 export const gameScreenshotsUrl = (gameId) =>
     `${baseURL}games/${gameId}/screenshots?key=${process.env.REACT_APP_RAWG_API}`;
+
+//searched games
+export const searchedGamesUrl = (gameName) =>
+    `${baseURL}games?search=${gameName}&key=${process.env.REACT_APP_RAWG_API}&page_size=${numberOfGames}`;
